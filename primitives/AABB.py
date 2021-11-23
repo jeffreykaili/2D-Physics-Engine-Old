@@ -22,3 +22,6 @@ class AABB:
 				return False 
 			return True 
 		return NotImplementedError('Must pass in another AABB to check for contact.')
+
+
+print(AABB(Vec2(1, 1), Vec2(2, 2)).isCollideAABB(AABB(Vec2(1.9, 2), Vec2(3, 3))))

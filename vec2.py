@@ -33,3 +33,9 @@ class Vec2:
 		if(isinstance(vec, Vec2)):
 			return self.x * vec.x + self.y * vec.y
 		raise NotImplementedError('Dot product should be between two vectors')
+
+	def normalize(self):
+		magnitude = self.length() 
+		new_vec = Vec2(self.x / magnitude, self.y / magnitude)
+		self.x = new_vec.x
+		self.y = new_vec.y
