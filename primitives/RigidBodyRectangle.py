@@ -24,7 +24,6 @@ class RigidBodyRect:
 
 	def resolveCollision(self, B):
 		rv = B.velocity - self.velocity
-		#print(rv)
 
 		normal = B.position - self.position
 		normal.normalize() 
@@ -44,14 +43,5 @@ class RigidBodyRect:
 		B.velocity += B.invmass * impulse 
 		self.position.x += 1/60 * self.velocity.x
 		B.position.x += 1/60 * B.velocity.x
-
-		'''
-		sum_mass = self.mass + B.mass 
-		s_ratio = self.mass / sum_mass
-		b_ratio = B.mass / sum_mass
-
-		self.velocity -= s_ratio * impulse 
-		B.velocity += b_ratio * impulse
-		'''
 
 		return B
