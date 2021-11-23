@@ -23,5 +23,5 @@ class AABB:
 			return True 
 		return NotImplementedError('Must pass in another AABB to check for contact.')
 
-
-print(AABB(Vec2(1, 1), Vec2(2, 2)).isCollideAABB(AABB(Vec2(1.9, 2), Vec2(3, 3))))
+if __name__ == '__main__':
+	print(AABB(Vec2(1, 1), Vec2(2, 2)).isCollideAABB(AABB(Vec2(1.9, 2), Vec2(3, 3))))
