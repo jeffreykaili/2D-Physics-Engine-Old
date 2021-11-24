@@ -39,3 +39,14 @@ class Vec2:
 		new_vec = Vec2(self.x / magnitude, self.y / magnitude)
 		self.x = new_vec.x
 		self.y = new_vec.y
+		return Vec2(self.x, self.y)
+
+	def perpendicular_vec(self):
+		return Vec2(-self.x, self.y)
+
+	def rotate(self, angle):
+		angle = math.radians(angle)
+		a_cos, a_sin = math.cos(angle), math.sin(angle)
+		x = a_cos * self.x - a_sin * self.y 
+		y = a_sin * self.x + a_cos * self.y 
+		return Vec2(x, y)

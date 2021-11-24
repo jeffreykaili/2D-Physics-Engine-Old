@@ -28,6 +28,7 @@ while True:
 		box_2 = box_1.resolveCollision(box_2)
 		print(f"NEW BOX 1 VELOCITY = {box_1.velocity}")
 		print(f"NEW BOX 2 VELOCITY = {box_2.velocity}")
+
 	else:
 		colour = (0, 0, 0)
 
