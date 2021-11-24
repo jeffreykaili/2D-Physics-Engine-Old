@@ -24,10 +24,10 @@ class RigidBodyRect:
 	def get_edges(self):
 		return [
 			Vec2(v[0], v[1]).rotate(self.angle) for v in (
-                (self.width, 0),
-                (0, self.height),
-                (-self.width, 0),
-                (0, -self.height),
+				(self.width, 0),
+				(0, self.height),
+				(-self.width, 0),
+				(0, -self.height),
 			)
 		]
 
@@ -35,10 +35,10 @@ class RigidBodyRect:
 		hw, hh = self.width / 2, self.height / 2
 		return [	
 			self.position + Vec2(v[0], v[1]).rotate(-self.angle) for v in (
-                (-hw, -hh),
-                (hw, -hh),
-                (hw, hh),
-                (-hw, hh)
+				(-hw, -hh),
+				(hw, -hh),
+				(hw, hh),
+				(-hw, hh)
 			)
 		]
 
