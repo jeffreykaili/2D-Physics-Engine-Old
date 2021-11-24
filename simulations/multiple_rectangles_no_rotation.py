@@ -9,10 +9,20 @@ pygame.init()
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
 fps = 60 
-box_1 = RigidBodyRect(300, 950, 100, 100, 100, Vec2(60, 0))
-box_2 = RigidBodyRect(1000, 950, 100, 100, 100, Vec2(-50, 0)) 
-box_3 = RigidBodyRect(1700, 950, 100, 100, 100, Vec2(-100, 0)) 
+'''
+# 3-body collision at the same time 
+box_1 = RigidBodyRect(400, 700, 100, 100, 100, Vec2(200, 0))
+box_2 = RigidBodyRect(800, 700, 100, 100, 100, Vec2(0, 0)) 
+box_3 = RigidBodyRect(1200, 700, 100, 100, 100, Vec2(-200, 0)) 
 boxes = [box_1, box_2, box_3]
+
+'''
+box_1 = RigidBodyRect(250, 700, 100, 100, 320, Vec2(210, 0))
+box_2 = RigidBodyRect(900, 700, 100, 100, 200, Vec2(0, 0)) 
+box_3 = RigidBodyRect(1200, 700, 100, 100, 170, Vec2(-150, 0)) 
+box_4 = RigidBodyRect(1400, 700, 100, 100, 120, Vec2(-100, 0)) 
+
+boxes = [box_1, box_2, box_3, box_4]
 
 colour = (0, 0, 0)
 
@@ -27,9 +37,11 @@ while True:
 	for i, box in enumerate(boxes):
 		for j in range(i+1, len(boxes)):
 			if box.checkCollision(boxes[j]):
-				boxes[j] = box.resolveCollision(boxes[j])
-
-	for box in boxes:
+				boxes[j] = box.resolveCollision(boxes[j]) 
+				print(f"BOX[{i}]: velocity = {box.velocity}")
+				print(f"BOX[{j}]: velocity = {boxes[j].velocity}")
+	for i, box in enumerate(boxes):
+		print(f"The velocity of box {i} is {box.velocity.x}")
 		box.position.x += 1/60 * box.velocity.x 
 
 	screen.fill((255, 255, 255))

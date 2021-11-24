@@ -5,7 +5,7 @@ from AABB import AABB
 import pygame
 
 class RigidBodyRect:
-	def __init__(self, x, y, width, height, mass, velocity = Vec2(0, 0), restitution = 0.5): 
+	def __init__(self, x, y, width, height, mass, velocity = Vec2(0, 0), restitution = 1): 
 		self.position = Vec2(x, y)
 		self.width = width 
 		self.height = height 
@@ -30,7 +30,7 @@ class RigidBodyRect:
 		velocity_along_normal = rv.dot(normal)
 
 		if velocity_along_normal > 0: 
-			return 
+			return B
 
 		e = min(self.restitution, B.restitution)
 		print(velocity_along_normal)
@@ -41,7 +41,8 @@ class RigidBodyRect:
 		print(f"IMPULSE IS: {impulse}")
 		self.velocity -= self.invmass * impulse
 		B.velocity += B.invmass * impulse 
-		self.position.x += 1/60 * self.velocity.x
-		B.position.x += 1/60 * B.velocity.x
+		self.position.x += 1/1e10 * self.velocity.x
 
+
+		print(f"B IS AT: {B.position} WITH VELOCITY: {B.velocity}")
 		return B
