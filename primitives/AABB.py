@@ -5,10 +5,8 @@ from vec2 import Vec2
 class AABB:
 	def __init__(self, mi, mx):
 		if(isinstance(mi, Vec2) and isinstance(mx, Vec2)):
-			# mi --> lower x and y points (top left)
-			# mx --> upper x and y points (bottom right)
-			self.mi = mi 
-			self.mx = mx
+			self.mi = mi # mi --> lower x and y points (top left)
+			self.mx = mx # mx --> upper x and y points (bottom right)
 		else:
 			raise NotImplementedError('Must pass in two vectors for Axis Aligned Bounding Box')
 

@@ -11,9 +11,12 @@ screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
 fps = 60 
 
-box_1 = RigidBodyRect(600, 500, 100, 100, 100, Vec2(100, 0))
-box_2 = RigidBodyRect(1200, 500, 100, 100, 100, Vec2(-100, 0)) 
+box_1 = RigidBodyRect(250, 500, 100, 100, 320, Vec2(210, 0))
+box_2 = RigidBodyRect(900, 500, 100, 100, 200, Vec2(0, 0)) 
+box_3 = RigidBodyRect(1200, 500, 100, 100, 170, Vec2(-150, 0)) 
+box_4 = RigidBodyRect(1400, 500, 100, 100, 120, Vec2(-100, 0)) 
 colour = (0, 0, 0)
+boxes = [box_1, box_2, box_3, box_4]
 
 while True: 
 	pygame.time.Clock().tick(fps)
@@ -23,21 +26,17 @@ while True:
 			if(event.key == pygame.K_ESCAPE): 
 				sys.exit(0)
 
-	if box_1.checkCollision(box_2):
-		colour = (0, 0, 255)
-		box_2 = box_1.resolveCollision(box_2)
-		print(f"NEW BOX 1 VELOCITY = {box_1.velocity}")
-		print(f"NEW BOX 2 VELOCITY = {box_2.velocity}")
+	for i, box in enumerate(boxes):
+		for j in range(i+1, len(boxes)):
+			if box.checkCollision(boxes[j]):
+				boxes[j] = box.resolveCollision(boxes[j]) 
 
-	else:
-		colour = (0, 0, 0)
-
-	box_1.position.x += 1/60 * box_1.velocity.x
-	box_2.position.x += 1/60 * box_2.velocity.x
+	for box in boxes: 
+		box.position.x += 1/60 * box.velocity.x
 
 	screen.fill((255, 255, 255))
 
-	pygame.draw.rect(screen, colour, pygame.Rect(box_1.position.x, box_1.position.y, box_1.width, box_1.height))
-	pygame.draw.rect(screen, colour, pygame.Rect(box_2.position.x, box_2.position.y, box_2.width, box_2.height))
+	for box in boxes: 
+		pygame.draw.rect(screen, colour, pygame.Rect(box.position.x, box.position.y, box.width, box.height))
 
 	pygame.display.update() 	

@@ -36,7 +36,10 @@ class Vec2:
 
 	def normalize(self):
 		magnitude = self.length() 
-		new_vec = Vec2(self.x / magnitude, self.y / magnitude)
+		if(magnitude):
+			new_vec = Vec2(self.x / magnitude, self.y / magnitude)
+		else:
+			new_vec = Vec2(0, 0)
 		self.x = new_vec.x
 		self.y = new_vec.y
 		return Vec2(self.x, self.y)
@@ -50,3 +53,18 @@ class Vec2:
 		x = a_cos * self.x - a_sin * self.y 
 		y = a_sin * self.x + a_cos * self.y 
 		return Vec2(x, y)
+
+def cross(a, b):
+	if(isinstance(a, Vec2)):
+		if(isinstance(b, Vec2)):
+			return a.x * b.y - a.y * b.x 
+		if(isinstance(b, float) or isinstance(b, int)):
+			return Vec2(b * a.y, -b * a.x)
+		else:
+			raise NotImplementedError('Improper cross product parameters')
+	else:
+		assert(isinstance(a, float) or isinstance(a, int))
+		if(isinstance(b, Vec2)):
+			return Vec2(-a * b.y, a * b.x)
+		else:
+			raise NotImplementedError('Improper cross product parameters')
